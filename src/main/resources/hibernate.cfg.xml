@@ -1,0 +1,16 @@
+<!-- hibernate.cfg.xml -->
+<hibernate-configuration>
+    <session-factory>
+        <!-- Configuración de la conexión a la base de datos -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://server:port/database_name</property>
+        <property name="hibernate.connection.username">username_database</property>
+        <property name="hibernate.connection.password">password_database</property>
+
+        <!-- Configuración del dialecto de la base de datos -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Mapeo de clases -->
+        <mapping class="entities" />
+    </session-factory>
+</hibernate-configuration>

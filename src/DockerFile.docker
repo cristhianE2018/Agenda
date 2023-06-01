@@ -1,0 +1,30 @@
+# Selecciona la imagen base de Java
+FROM openjdk:18
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copia el archivo pom.xml para descargar las dependencias
+COPY pom.xml .
+
+# Descarga las dependencias del proyecto
+RUN mvn dependency:go-offline
+
+# Copia el resto de los archivos del proyecto
+COPY src ./src
+
+# Compila la aplicación
+RUN mvn package
+
+# Expone el puerto en el que se ejecutará la aplicación
+EXPOSE 8080
+
+# Configura las variables de entorno para la conexión a la base de datos MySQL
+ENV DB_HOST=localhost
+ENV DB_PORT=3306
+ENV DB_NAME=escuela
+ENV DB_USER=root
+ENV DB_PASSWORD=Crisnaiht2023
+
+# Comando para ejecutar la aplicación
+CMD ["java", "-jar", "target/AgendaSimple-1.0-SNAPSHOT.jar"]
