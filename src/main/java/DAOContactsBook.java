@@ -17,7 +17,6 @@ public class DAOContactsBook {
     }
 
     public Student getStudentById(String controlNumber){
-        //transaction = session.beginTransaction();
         Student student = session.get(Student.class,controlNumber);
         return student;
     }
@@ -42,7 +41,6 @@ public class DAOContactsBook {
             transaction = session.beginTransaction();
             session.delete(studenByDelete);
             transaction.commit();
-            System.out.println("Eliminado con exito");
             return 200;
         }
         catch (Exception e){
@@ -53,10 +51,13 @@ public class DAOContactsBook {
 
     public Student updateStudent(Student student){
         try{
+            transaction = session.beginTransaction();
             session.update(student.getNumeroControl(),student);
+            transaction.commit();
             return student;
         }
         catch (Exception e){
+            System.out.println(e.getMessage());
             return null;
         }
 

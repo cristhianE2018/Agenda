@@ -16,6 +16,7 @@ public class principal{
         System.out.println("4.- Find student by control number");
         System.out.println("5.- Update student");
         int opcion = Integer.parseInt(leer.nextLine());
+        String control="";
         switch (opcion){
             case 1:
                 List<Student> students = agenda.showStudent();
@@ -36,9 +37,24 @@ public class principal{
                 break;
             case 3:
                 System.out.println("Type control number: ");
-                String control = leer.nextLine();
+                control = leer.nextLine();
                 int codigo = agenda.removeStudent(control);
                 System.out.println(codigo);
+                break;
+            case 4:
+                System.out.println("Type control number: ");
+                control = leer.nextLine();
+                Student student1 = agenda.getStudentById(control);
+                System.out.println(student1.toString());
+                break;
+            case 5:
+                System.out.println("Type control number: ");
+                control = leer.nextLine();
+                Student student2 = agenda.getStudentById(control);
+                System.out.println("Ingresa nuevo correo: ");
+                String correoNuevo= leer.nextLine();
+                student2.setCorreo(correoNuevo);
+                agenda.updateStudent(student2);
                 break;
         }
     }
